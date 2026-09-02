@@ -1,0 +1,59 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>카카오톡 개인 아카이브</title><style>
+body{margin:0;background:#f5f6f8;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo",sans-serif;color:#202124}.wrap{max-width:820px;margin:0 auto;padding:55px 20px 80px}h1{font-size:28px;margin:0 0 8px}.sub{color:#8a909b;font-size:13px;margin-bottom:30px}.year{font-size:16px;font-weight:800;margin:28px 0 10px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}a{text-decoration:none;color:inherit;background:#fff;border:1px solid #e6e8ed;border-radius:13px;padding:15px;display:block}a:hover{box-shadow:0 7px 22px rgba(0,0,0,.07);transform:translateY(-1px)}.m{font-weight:800}.c{font-size:11px;color:#8a909b;margin-top:5px}</style>
+<style id="password-gate-style">
+#passwordGate{position:fixed;inset:0;z-index:99999;background:#f6f7f9;display:flex;align-items:center;justify-content:center;padding:20px}
+#passwordGate .box{width:min(420px,100%);background:#fff;border:1px solid #ddd;border-radius:18px;padding:32px;box-shadow:0 10px 35px rgba(0,0,0,.08);text-align:center}
+#passwordGate h1{font-size:22px;margin:0 0 10px}
+#passwordGate p{color:#666;margin:0 0 22px}
+#passwordGate input{width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #ccc;border-radius:10px;font-size:16px}
+#passwordGate button{width:100%;margin-top:10px;padding:13px;border:0;border-radius:10px;background:#222;color:#fff;font-size:16px;cursor:pointer}
+#passwordGate .error{height:20px;color:#c33;font-size:13px;margin-top:10px}
+body.password-locked{overflow:hidden}
+</style>
+
+</head><body>
+
+<div id="passwordGate">
+  <div class="box">
+    <h1>카카오톡 보관함</h1>
+    <p>비밀번호를 입력하면 보관함을 열 수 있습니다.</p>
+    <form id="passwordForm" autocomplete="off">
+      <input id="passwordInput" type="password" inputmode="numeric" placeholder="비밀번호" autofocus>
+      <button type="submit">보관함 열기</button>
+      <div id="passwordError" class="error"></div>
+    </form>
+  </div>
+</div>
+<div class="wrap">
+<h1>카카오톡 개인 아카이브</h1><div class="sub">전체 214,789개 메시지 · 15개월 · 2명</div><div class="year">2025년</div><div class="grid"><a href="months/2025-06.html"><div class="m">2025-06</div><div class="c">20,122개 메시지 · 29일</div></a><a href="months/2025-07.html"><div class="m">2025-07</div><div class="c">14,108개 메시지 · 30일</div></a><a href="months/2025-08.html"><div class="m">2025-08</div><div class="c">19,724개 메시지 · 31일</div></a><a href="months/2025-09.html"><div class="m">2025-09</div><div class="c">14,191개 메시지 · 30일</div></a><a href="months/2025-10.html"><div class="m">2025-10</div><div class="c">13,525개 메시지 · 31일</div></a><a href="months/2025-11.html"><div class="m">2025-11</div><div class="c">16,426개 메시지 · 30일</div></a><a href="months/2025-12.html"><div class="m">2025-12</div><div class="c">9,538개 메시지 · 31일</div></a></div><div class="year">2026년</div><div class="grid"><a href="months/2026-01.html"><div class="m">2026-01</div><div class="c">16,170개 메시지 · 31일</div></a><a href="months/2026-02.html"><div class="m">2026-02</div><div class="c">19,884개 메시지 · 28일</div></a><a href="months/2026-03.html"><div class="m">2026-03</div><div class="c">12,322개 메시지 · 31일</div></a><a href="months/2026-04.html"><div class="m">2026-04</div><div class="c">13,093개 메시지 · 30일</div></a><a href="months/2026-05.html"><div class="m">2026-05</div><div class="c">17,181개 메시지 · 31일</div></a><a href="months/2026-06.html"><div class="m">2026-06</div><div class="c">8,463개 메시지 · 30일</div></a><a href="months/2026-07.html"><div class="m">2026-07</div><div class="c">14,887개 메시지 · 31일</div></a><a href="months/2026-08.html"><div class="m">2026-08</div><div class="c">5,155개 메시지 · 20일</div></a></div></div>
+<script id="password-gate-script">
+(function(){
+  const PASSWORD = "2473";
+  const gate = document.getElementById("passwordGate");
+  const form = document.getElementById("passwordForm");
+  const input = document.getElementById("passwordInput");
+  const error = document.getElementById("passwordError");
+  document.body.classList.add("password-locked");
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(input.value === PASSWORD){
+      gate.remove();
+      document.body.classList.remove("password-locked");
+      sessionStorage.setItem("kakaoArchiveUnlocked","1");
+    } else {
+      error.textContent = "비밀번호가 올바르지 않습니다.";
+      input.value = "";
+      input.focus();
+    }
+  });
+
+  if(sessionStorage.getItem("kakaoArchiveUnlocked") === "1"){
+    gate.remove();
+    document.body.classList.remove("password-locked");
+  }
+})();
+</script>
+
+</body></html>
